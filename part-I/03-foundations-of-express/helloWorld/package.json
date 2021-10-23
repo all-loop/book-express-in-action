@@ -1,0 +1,8 @@
+{
+  "name": "hello-wolrd",
+  "author": "Gonzalo FU",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
