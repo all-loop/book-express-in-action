@@ -1,0 +1,9 @@
+{
+  "name": "middleware-third-party",
+  "author": "Gonzalo FU",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
