@@ -1,15 +1,19 @@
 const express = require("express");
+const morgan = require("morgan");
 const path = require("path");
 const fs = require("fs");
 
 const app = express();
 
 // Middleware que resgistra todas las solicitudes a nuestro servidor web
-app.use((req, res, next) => {
-  console.log(`Request IP: ${req.url}`);
-  console.log(`Request date: ${new Date()}`);
-  next();
-});
+// Antes: <------------
+// app.use((req, res, next) => {
+//   console.log(`Request IP: ${req.url}`);
+//   console.log(`Request date: ${new Date()}`);
+//   next();
+// });
+// Después: ------------>
+app.use(morgan("short"));
 
 // Middleware para servir archivos estáticos
 app.use((req, res, next) => {
