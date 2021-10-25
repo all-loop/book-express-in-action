@@ -1,0 +1,14 @@
+{
+  "name": "static-file-fun",
+  "author": "Gonzalo FU",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
