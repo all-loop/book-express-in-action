@@ -27,6 +27,12 @@ app.use((req, res, next) => {
   });
 });
 
+// Middleware para tratar cualquier error 404, sin importar que haya sucedido
+app.use((req, res) => {
+  res.status(404);
+  res.send("File not found!");
+});
+
 app.listen(3000, () => {
   console.log("App started on port 3000");
 });
