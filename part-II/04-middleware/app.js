@@ -16,20 +16,24 @@ const app = express();
 app.use(morgan("short"));
 
 // Middleware para servir archivos estáticos
-app.use((req, res, next) => {
-  let filePath = path.join(__dirname, "static", req.url);
-  fs.stat(filePath, (err, fileInfo) => {
-    if (err) {
-      next();
-      return;
-    }
-    if (fileInfo.isFile()) {
-      res.sendFile(filePath);
-    } else {
-      next();
-    }
-  });
-});
+// Antes: <--------------
+// app.use((req, res, next) => {
+//   let filePath = path.join(__dirname, "static", req.url);
+//   fs.stat(filePath, (err, fileInfo) => {
+//     if (err) {
+//       next();
+//       return;
+//     }
+//     if (fileInfo.isFile()) {
+//       res.sendFile(filePath);
+//     } else {
+//       next();
+//     }
+//   });
+// });
+// Después
+const staticPath = path.join(__dirname, "static");
+app.use(express.static(staticPath));
 
 // Middleware para tratar cualquier error 404, sin importar que haya sucedido
 app.use((req, res) => {
