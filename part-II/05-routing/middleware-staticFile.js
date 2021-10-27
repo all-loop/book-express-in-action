@@ -25,9 +25,18 @@ app.use("/uploads", express.static("userUploadsPath"));
 const photoPath = path.resolve(__dirname, "offensive-photos-folder");
 app.use("/offensive", photoPath);
 
+// Middleware para servir el contenido (foto) especifico de un usuario
+app.use("/users/:userid/profile_photo", (req, res) => {
+  res.sendFile(getProfilePhotoPath(req.params.userid));
+});
+
 app.use((req, res) => {
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.send("Looks like you didn't find a static file.");
 });
 
 app.listen(3000);
+
+function getProfilePhotoPath(userID) {
+  return;
+}
