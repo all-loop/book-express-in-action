@@ -1,0 +1,10 @@
+{
+  "name": "multiple-views-engine",
+  "author": "Gonzalo FU",
+  "private": true,
+  "dependencies": {
+    "consolidate": "^0.16.0",
+    "express": "^4.17.1",
+    "walrus": "^0.10.1"
+  }
+}
