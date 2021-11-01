@@ -1,0 +1,5 @@
+Hi <%= name %>! You were born in <%= birthyear %>, so that means you're <%= (new
+Date()).getFullYear() - birthyear %> years old. <% if (career) { %><%=
+(career.substring(0, 1).toUpperCase())+(career.substring(1)) %> is a cool
+career! <% } else { -%> Haven't started a career yet? That's cool. <% } -%> Oh,
+let's read your bio: <%- bio %> See You later!
