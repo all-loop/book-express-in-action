@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Page 2</title>
+  </head>
+  <body>
+    <% userList.forEach((user) => { %>
+    <div><%- include("./userWidget", {user}) %></div>
+    <% }) %>
+  </body>
+</html>
