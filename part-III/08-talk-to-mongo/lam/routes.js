@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 const { models } = require("mongoose");
 
 // Importamos el modelo User
@@ -29,5 +30,37 @@ router.get("/", (req, res, next) => {
       res.render("index", { users: users });
     });
 });
+
+router.get("/signup", (req, res) => {
+  res.render("signup");
+});
+
+router.post(
+  "/signup",
+  (req, res, next) => {
+    // body-parser añade username y password al body de la solicitud
+    const { username, password } = req.body;
+    User.findOne({ username: username }, (err, user) => {
+      if (err) {
+        return next(err);
+      }
+      if (user) {
+        req.flash("error", "User already exists");
+        return res.redirect("/signup");
+      }
+      const newUser = new User({
+        username: username,
+        password: password,
+      });
+      newUser.save(next);
+    });
+  },
+  // Acá sucede la autenticación del usuario
+  passport.authenticate("login", {
+    successRedirect: "/",
+    failureRedirect: "/signup",
+    failureFlash: true,
+  })
+);
 
 module.exports = router;
