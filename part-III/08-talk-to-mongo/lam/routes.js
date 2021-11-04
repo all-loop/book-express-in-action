@@ -17,7 +17,7 @@ router.use((req, res, next) => {
   next();
 });
 
-// Enrutamiento
+// Enrutamiento para el homepage
 router.get("/", (req, res, next) => {
   // Consultamos los usuarios de la BD, devolviendo siempre
   // por los nuevos usuarios primero.
@@ -31,6 +31,7 @@ router.get("/", (req, res, next) => {
     });
 });
 
+// Enrutamiento para el registro de usuarios
 router.get("/signup", (req, res) => {
   res.render("signup");
 });
@@ -49,8 +50,8 @@ router.post(
         return res.redirect("/signup");
       }
       const newUser = new User({
-        username: username,
-        password: password,
+        username,
+        password,
       });
       newUser.save(next);
     });
@@ -62,5 +63,18 @@ router.post(
     failureFlash: true,
   })
 );
+
+// Enrutamiento para el perfil del usuario
+router.get("/users/:username", (req, res, next) => {
+  User.findOne({ username: req.params.username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(404);
+    }
+    res.render("profile", { user });
+  });
+});
 
 module.exports = router;
