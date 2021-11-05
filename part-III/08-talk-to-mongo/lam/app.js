@@ -9,12 +9,16 @@ const passport = require("passport");
 
 // Importaciónes
 const routes = require("./routes");
+const setUpPassport = require("./setuppassport");
 
 // App (servidor)
 const app = express();
 
 // Conexión al servidor de BD
 mongoose.connect("mongodb://localhost:27017/test");
+
+// Levantamos la configuración de passport
+setUpPassport();
 
 // Configuraciónes de la App
 app.set("port", process.env.PORT || 3000);
