@@ -77,4 +77,54 @@ router.get("/users/:username", (req, res, next) => {
   });
 });
 
+// Enrutamiento para el inicio de sesión
+router.get("/login", (req, res) => {
+  res.render("login");
+});
+
+router.post(
+  "/login",
+  passport.authenticate("login", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+  })
+);
+
+// Enrutamiento para el cierre de sesión
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
+// Middleware que se preocupara de asegurar que un usuario este autenticado
+// para poder continuar con alguna operación del sitio web.
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    req.flash("info", "You must be logged in to see this page.");
+    res.redirect("/login");
+  }
+}
+
+// Para poder acceder a editar el perfil de un usuario, debemos antes verificar
+// que el se encuentra autentificado.
+router.get("/edit", ensureAuthenticated, (req, res) => {
+  res.render("edit");
+});
+
+router.post("/edit", ensureAuthenticated, (req, res, next) => {
+  req.user.displayName = req.body.displayname;
+  req.user.bio = req.body.bio;
+  req.user.save((err) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    req.flash("info", "Profile updated!");
+    res.redirect("/edit");
+  });
+});
+
 module.exports = router;
