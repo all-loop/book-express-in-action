@@ -36,4 +36,11 @@ describe("capitalize", function () {
     expect(capitalize("Evan")).to.equal("Evan");
     expect(capitalize("Catman")).to.equal("Catman");
   });
+
+  it("capitalizes String objects without changing their values", function () {
+    let str = new String("who is Javascript?");
+    expect(capitalize(str)).to.equal("Who is javascript?");
+    // valueOf convierte un objeto String  a un string normal.
+    expect(str.valueOf()).to.equal("who is Javascript?");
+  });
 });
