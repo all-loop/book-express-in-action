@@ -16,4 +16,8 @@ describe("capitalize", function () {
   it("makes the rest of the string lowercase", function () {
     expect(capitalize("javaScript")).to.equal("Javascript");
   });
+
+  it("leaves empty strings alone", function () {
+    expect(capitalize("")).to.equal("");
+  });
 });
