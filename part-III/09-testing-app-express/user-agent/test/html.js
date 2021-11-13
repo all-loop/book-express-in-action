@@ -15,10 +15,15 @@ describe("html response", function () {
   });
 
   it("returns an HTML response", function (done) {
-    // TODO...
+    request.expect("Content-Type", /html/).expect(200).end(done);
   });
 
   it("returns your User Agent", function (done) {
-    // TODO...
+    request
+      .expect(function (res) {
+        let htmlResponse = res.text;
+        // TODO...
+      })
+      .end(done);
   });
 });
