@@ -3,6 +3,9 @@
  */
 
 const supertest = require("supertest");
+// cheerio en breve es una libreria que nos permite incorporar las caracteristicas
+// de JQuery dentro de node. Es decir, trabajar con datos con formato HTML
+const cheerio = require("cheerio");
 const app = require("../app");
 
 describe("html response", function () {
@@ -22,7 +25,12 @@ describe("html response", function () {
     request
       .expect(function (res) {
         let htmlResponse = res.text;
-        // TODO...
+        // Parseamos la respuesta con formato HTML con cheerio
+        let $ = cheerio.load(htmlResponse); // iniciamos el objeto cheerio
+        let userAgent = $(".user-agent").html().trim(); // obteniendo el user-agent
+        if (userAgent !== "a cool browser") {
+          throw new Error("User Agent not found");
+        }
       })
       .end(done);
   });
