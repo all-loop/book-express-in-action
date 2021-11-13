@@ -7,7 +7,7 @@ describe("plain text response", function () {
   beforeEach(function () {
     request = supertest(app)
       .get("/")
-      .set("Usert-Agent", "my cool browser")
+      .set("User-Agent", "my cool browser")
       .set("Accept", "text/plain");
   });
 
