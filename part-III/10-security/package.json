@@ -2,5 +2,11 @@
   "name": "security-example",
   "author": "Gonzalo FU",
   "private": true,
-  "scripts": {}
+  "scripts": {},
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-enforces-ssl": "^1.1.0",
+    "helmet": "^4.6.0",
+    "ms": "^2.1.3"
+  }
 }
