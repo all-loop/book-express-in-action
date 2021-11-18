@@ -1,0 +1,12 @@
+{
+  "name": "browserify-example",
+  "private": true,
+  "author": "Gonzalo FU",
+  "scripts": {
+    "build-my-js": "browserify main.js -o compiled.js"
+  },
+  "dependencies": {
+    "browserify": "^7.0.0",
+    "random-color": "^0.0.1"
+  }
+}
