@@ -27,6 +27,22 @@ module.exports = function (grunt) {
         },
       },
     },
+    watch: {
+      scripts: {
+        // Se le dice a grunt que observe las tareas para ejecutar
+        // cualquier tarea asociada a browserify cada vez que haya
+        // un cambio en un archivo js.
+        files: ["**/*.js"],
+        tasks: ["browserify"],
+      },
+      styles: {
+        // Se le dice a grunt que obseve las tareas para ejecutar cualquier
+        // tarea asociada a LESS cada vez que ocurra un cambio dentro de un
+        // archivo .less
+        files: ["**/*.less"],
+        tasks: ["less"],
+      },
+    },
   });
 
   // Carga el plugin de LESS para Grunt
@@ -34,6 +50,9 @@ module.exports = function (grunt) {
   // Carga la tarea para grunt-browserify
   grunt.loadNpmTasks("grunt-browserify");
   grunt.loadNpmTasks("grunt-contrib-uglify");
+  // Registra la nueva tarea de vigilancia para ser ejecutada cuando
+  // se ejecute grunt watch
+  grunt.loadNpmTasks("grunt-contrib-watch");
 
   // Se define la compilación de browserify y less
   grunt.registerTask("default", ["browserify", "less"]);
