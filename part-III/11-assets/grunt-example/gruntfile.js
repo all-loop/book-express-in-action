@@ -20,13 +20,22 @@ module.exports = function (grunt) {
         dest: "tmp/build/main.js",
       },
     },
+    uglify: {
+      myApp: {
+        files: {
+          "tmp/build/main.min.js": ["tmp/build/main.js"],
+        },
+      },
+    },
   });
 
   // Carga el plugin de LESS para Grunt
   grunt.loadNpmTasks("grunt-contrib-less");
   // Carga la tarea para grunt-browserify
   grunt.loadNpmTasks("grunt-browserify");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
 
   // Se define la compilación de browserify y less
   grunt.registerTask("default", ["browserify", "less"]);
+  grunt.registerTask("default", ["browserify", "less", "uglify"]);
 };
