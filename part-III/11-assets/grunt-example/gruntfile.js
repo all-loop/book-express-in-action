@@ -11,11 +11,22 @@ module.exports = function (grunt) {
         },
       },
     },
+    // Inicio de la configuración para browserify
+    browserify: {
+      client: {
+        // Compila el archivo main.js de la carpeta 'my_javascript'
+        // en la dirección 'tmp/build/main.js'
+        src: ["my_javascript/main.js"],
+        dest: "tmp/build/main.js",
+      },
+    },
   });
 
   // Carga el plugin de LESS para Grunt
   grunt.loadNpmTasks("grunt-contrib-less");
+  // Carga la tarea para grunt-browserify
+  grunt.loadNpmTasks("grunt-browserify");
 
-  // Define la tarea de compilación para LESS
-  grunt.registerTask("default", ["less"]);
+  // Se define la compilación de browserify y less
+  grunt.registerTask("default", ["browserify", "less"]);
 };
